@@ -13,7 +13,7 @@
 
     const originalSend = WebSocket.prototype.send;
 
-    // 你想修改的昵称
+    // 你想修改的昵称，长度过长可能会导致战绩列表不显示等bug
     const newNickname = "这里填写你想修改的昵称";
 
     WebSocket.prototype.send = function(data) {
