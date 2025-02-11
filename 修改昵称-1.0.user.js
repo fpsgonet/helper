@@ -47,6 +47,20 @@
         return originalSend.call(this, data);
     };
 
+    // 要删除的 cookies 名称列表
+    const cookiesToDelete = [
+        'Hm_lpvt_38Gjk10deg72yjk09qiihd65s1t3bn2v',
+        '__51uvsct__Keyk3NJl0sJ2oNBW',
+        '__51vcke__Keyk3NJl0sJ2oNBW',
+        '__51vuft__Keyk3NJl0sJ2oNBW',
+        '__vtins__Keyk3NJl0sJ2oNBW'
+    ];
+
+    // 删除指定的 cookies
+    cookiesToDelete.forEach(cookieName => {
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=fpsgo.net;`;
+    });
+
     // 将字符串转换为 HEX
     function stringToHex(str) {
         return Array.from(new TextEncoder().encode(str), byte => byte.toString(16).padStart(2, '0')).join('');
