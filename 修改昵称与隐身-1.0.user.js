@@ -13,7 +13,7 @@
     const originalSend = WebSocket.prototype.send;
 
     // 你想修改的昵称，长度过长可能会导致战绩列表不显示等bug
-    const newNickname = "这里填写你想要修改的昵称";
+    const newNickname = "这里填修改的昵称";
 
     WebSocket.prototype.send = function(data) {
         try {
@@ -21,7 +21,7 @@
                 let textData = bufferToHex(data);
                 if (textData.includes("5c6e616d655c")) {
                     let newNameHex = stringToHex(newNickname);
-                    const ratePrefixHex = stringToHex("rate\\1000000\\");
+                    const ratePrefixHex = stringToHex("\\rate\\1000000");
                     textData = textData.replace(/(5c6e616d655c)/, `${ratePrefixHex}$1`);
                     textData = textData.replace(/(5c6e616d655c)[0-9a-f]+(?=5c)/, `$1${newNameHex}`);
                     data = hexToBuffer(textData);
